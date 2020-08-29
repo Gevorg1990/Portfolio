@@ -1,0 +1,66 @@
+<div class="container conttop" >
+   
+   <br>
+   <h4><mark>Car: </mark>{{name}} <small>{{ model}}</small></h4>
+   <div class="alert alert-success">
+       <ul>
+           <li class="luli" [ngStyle]="{listStyle:'none'}" >
+               <div>
+                   <img [ngStyle]="{width:'100%',borderRadius:'20px'}"  [src]="imgUrl">
+               </div>
+           </li>
+           <li [ngStyle]="{color:'red'}">
+               Speed: <strong>{{speed}}/km</strong>
+           </li>
+           <li>
+               Color Car: <strong>{{colors.car}}</strong>
+           </li>
+           <li>
+               Color Salon: <strong>{{colors.salon}}</strong>
+           </li>
+           <li>
+               Color Wheels: <strong>{{colors.wheels}}</strong>
+           </li>
+       </ul>
+   </div>
+
+   <h5>Edit object</h5>
+   <button class="btn btn-danger" (click)="redakCar()">Edit</button>
+  <div>
+      <br>
+  </div>
+  <form *ngIf=showAndHiden>
+   <div class="form-group">
+       
+       <input type="text" class="form-control"[(ngModel)]="name" name="name"  placeholder="Nazvanie mashini"><br>
+       <input type="text" class="form-control" [(ngModel)]="model" name="model"  placeholder="model"><br>
+       <input type="number" class="form-control"[(ngModel)]="speed" name="speed"   placeholder="Scorast"><br>
+       <input type="text" class="form-control" [(ngModel)]="colors.car" name="colorsCar"  placeholder="cvet mahsini"><br>
+       <input type="text" class="form-control" [(ngModel)]="colors.salon" name="colorsSalon"  placeholder="cvet Salona"><br>
+       <input type="text" class="form-control" [(ngModel)]="colors.wheels" name="colorsWheels"  placeholder="cvet kalyos"><br>
+      
+   </div>
+ 
+</form>
+
+   <h5>Car options</h5>
+   
+   <form  (submit)="addOpt(option.value)">
+   <div class="form-group">
+       <label for="option">Adding new features</label>
+       <input type="text" class="form-control" id="option" #option placeholder="enter parameter">
+       <button type="submit" class="btn btn-outline-success">Add</button>
+   </div>
+   </form>
+
+
+   <div class="alert alert-warning">
+    <li *ngFor="let opt of options; let i=index">{{i+1}} {{opt}} <button class="btn btn-danger btn-xs " [ngStyle]="{marginBottom:'10px'}" (click)="deleteOpt(opt)">X</button></li>
+   </div>
+
+   <h5>Choose Car</h5>
+   <button class="btn btn-danger" (click)="carSelect('bmw')">BMW</button>
+   <button class="btn btn-info" (click)="carSelect('mers')">Mercedes-Benz</button>
+   <button class="btn btn-success thistop" (click)="carSelect('audi')">Audi</button>
+   
+</div>
